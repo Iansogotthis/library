@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <% if (user) { %>
+        <a href="/">Library</a>
+  
+        <a href="/books/new">Add Book</a>
+        <a href="/books/">Search</a>
+        <a href="/logout">LOG OUT</a>
+        <% } else { %>
+        <a href="/auth/google" class="login"
+          >LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"
+        /></a>
+        <% } %>
+      </nav>
+    <h1>Library Books</h1>
+    <% books.forEach(function(book) { %>
+        <div>
+            <h2><%= book.Name %></h2>
+            <p>Author: <%= book.author %></p>
+            <p>Is Checked Out: <%= book.isCheckedOut ? 'Yes' : 'No' %></p>
+        </div>
+    <% }); %>
+</body>
+</html>
