@@ -1,20 +1,25 @@
-.brand-logo {
-  margin-left: 15px;
+body {
+  font-family: Arial, sans-serif;
 }
 
-.card .card-content .card-title {
-  margin-bottom: 10px;
+nav {
+  background-color: #333;
+  padding: 10px;
 }
 
-#search-row form {
-  padding-top: 20px;
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 15px;
+  display: inline-block;
 }
 
-.student-name {
-  position: relative;
-  top: -5px;
+nav a:hover {
+  color: #ddd;
 }
 
-.collection-item form {
-  margin-top: -5px;
+.login img {
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
 }

@@ -1,10 +1,11 @@
-const Book = require('./models/book'); 
+const Book = require('../models/book'); 
 module.exports={
-    newBook : newBook
+    new: newBook,
+    
 }
 
 function newBook(req, res) {
 
-    res.render("/books/new");
+    res.render("books/new");
 }
 
