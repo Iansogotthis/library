@@ -2,10 +2,22 @@ const Book = require('../models/book');
 
 module.exports={
     new: newBook,
-    create
+    create,
+    searchBooks
     
 }
+function searchBooks(req, res) {
+    const name = req.query.name;
 
+    Book.find({ Name: name }, (err, books) => {
+        if (err) {
+            console.error('Error searching for book:', err);
+            res.status(500).send('Error searching for book');
+        } else {
+            res.render('searchResults', { books: books });
+        }
+    });
+}
 function create (req, res){
     const { Name, author } = req.body;
     const isCheckedOut = req.body.isCheckedOut === 'on';
