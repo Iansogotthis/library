@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%= book.Name %></title>
+</head>
+<body>
+  <h1><%= book.Name %></h1>
+  <p>Author: <%= book.author %></p>
+  <p>Is Checked Out: <%= book.isCheckedOut ? 'Yes' : 'No' %></p>
+
+  <% if (user) { %>
+    <h2>Reviews</h2>
+    <% book.reviews.forEach(function(review) { %>
+      <div>
+        <h3><%= review.reviewer %></h3>
+        <p>Rating: <%= review.rating %></p>
+        <p><%= review.reviewText %></p>
+        <p><%= review.date.toDateString() %></p>
+      </div>
+    <% }) %>
+
+    <h2>Comments</h2>
+    <% book.comments.forEach(function(comment) { %>
+      <div>
+        <h3><%= comment.commenter %></h3>
+        <p><%= comment.commentText %></p>
+        <p><%= comment.date.toDateString() %></p>
+      </div>
+    <% }) %>
+  <% } else { %>
+    <p>You must be logged in to see reviews and comments.</p>
+  <% } %>
+</body>
+</html>
