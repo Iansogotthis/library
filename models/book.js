@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ReviewSchema = new mongoose.Schema({
+  reviewText: {
+    type: String,
+    required: true,
+  },
+
+
   rating: {
     type: Number,
     required: true,
@@ -11,12 +17,9 @@ const ReviewSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId, // this is from mongoose
     ref: "User", // this references this line mongoose.model('User', userSchema);
   },
-  userName: String,
+  userName: String
 
-  reviewText: {
-    type: String,
-    required: true,
-  },
+  
 });
 
 const bookSchema = new mongoose.Schema(

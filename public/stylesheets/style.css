@@ -158,20 +158,48 @@ table a:hover {
 .reviews-title {
   text-align: center;
   margin-top: 30px;
+  font-size: 2em;
+  color: #333;
 }
 
 .review-item {
   border: 1px solid #ddd;
-  padding: 10px;
-  margin: 10px auto;
-  width: 50%;
+  padding: 20px;
+  margin: 20px auto;
+  width: 60%;
+  border-radius: 10px;
+  background-color: #f9f9f9;
 }
 
 .reviewer-name {
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color: #333;
 }
 
-.review-rating, .review-text, .review-date {
-  margin-bottom: 5px;
+.review-rating, .review-text {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.review-rating {
+  font-weight: bold;
+}
+
+form[action*="/reviews/"] {
+  margin-top: 10px;
+}
+
+form[action*="/reviews/"] input[type="submit"] {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+form[action*="/reviews/"] input[type="submit"]:hover {
+  background-color: #cc0000;
 }

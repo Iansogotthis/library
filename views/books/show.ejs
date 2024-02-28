@@ -25,7 +25,7 @@
   
         <form id="add-review-form" method="POST" action="/books/<%= book._id %>/reviews" class="review-form">
             <label class="review-label">Review:</label>
-            <textarea name="content" class="review-textarea"></textarea>
+            <textarea name="reviewText" class="review-textarea"></textarea>
             <label class="rating-label">Rating:</label>
             <select name="rating" class="rating-select">
                 <option value="1">1</option>
@@ -46,7 +46,9 @@
       <h3 class="reviewer-name"><%= review.userName %></h3>
       <p class="review-rating">Rating: <%= review.rating %></p>
       <p class="review-text"><%= review.reviewText %></p>
-      <p class="review-date"><%= review.createdAt.toLocaleDateString() %></p>
+      <form action="/books/<%= book._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+        <input type="submit" value="Delete Review">
+      </form>
     </div>
     <% }) %> <%}%>
   </body>
