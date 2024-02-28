@@ -18,26 +18,36 @@ function searchBooks(req, res) {
         }
     });
 }
-function create (req, res){
-    const { Name, author } = req.body;
-    const isCheckedOut = req.body.isCheckedOut === 'on';
 
-    const newBook = new Book({
-        Name,
-        author,
-        isCheckedOut
-    });
+async function create(req, res) {
+	// convert nowShowing's checkbox of nothing or "on" to boolean
+	req.body.nowShowing = !!req.body.nowShowing;
+	// remove any whitespace at start and end of cast
+  
+  
+	// Remove empty properties so that defaults will be applied
+	for (let key in req.body) {
+	  if (req.body[key] === "") delete req.body[key];
+	}
+	try {
+	  const bookFromTheDatabase = await Book.create(req.body); // the await is waiting for the MovieModel to go to MongoDB ATLAS (our db) a
+	  //and put the contents form in the db, and come back to the express server
+  
+	  // if you want to see what you put in the database on your server
+	  console.log(bookFromTheDatabase);
+  
+	  // Always redirect after CUDing data
+	  // We'll refactor to redirect to the movies index after we implement it
+	  res.redirect(`/books/${bookFromTheDatabase._id}`); // Update this line
+	} catch (err) {
+	  // Typically some sort of validation error
+	  console.log(err);
+	  res.render("books/new", { errorMsg: err.message });
+	}
+  }
+  
 
-    newBook.save((err) => {
-        if (err) {
-            console.error('Error creating book:', err);
-            res.status(500).send('Error creating book');
-        } else {
-            console.log('Book created successfully');
-            res.redirect('/index');
-        }
-    });
-}
+
 function newBook(req, res) {
 
     res.render("books/new");

@@ -1,0 +1,12 @@
+<form id="myForm" action="/" method="post">
+    <!-- form fields go here -->
+    <input type="submit" value="Submit">
+</form>
+
+<script>
+    document.getElementById("myForm").addEventListener("submit", function(event){
+        event.preventDefault();
+        // submit the form data to the server
+        // and redirect to the landing page
+    });
+</script>
