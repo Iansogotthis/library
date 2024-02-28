@@ -82,3 +82,13 @@ th {
   background-color: #333;
   color: #fff;
 }
+
+table a {
+  color: #333;
+  text-decoration: none;
+}
+
+table a:hover {
+  color: #666;
+  text-decoration: underline;
+}

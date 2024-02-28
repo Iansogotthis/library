@@ -33,7 +33,7 @@
             <tbody>
                 <% bookDocs.forEach(function(book) { %>
                     <tr>
-                        <td><%= book.Name %></td>
+                        <td><a href="/books/<%= book._id %>"><%= book.Name %></a></td>
                         <td><%= book.author %></td>
                         <td><%= book.isCheckedOut ? 'Yes' : 'No' %></td>
                         <td>
