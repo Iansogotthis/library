@@ -1,31 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <nav>
-        <% if (user) { %>
-        <a href="/">Library</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title><%= book.Name %></title>
+  </head>
+  <body>
+    <nav class="main-nav">
+      <% if (user) { %>
+      <a href="/books" class="nav-link">Library</a>
+      <a href="/books/new" class="nav-link">Add Book</a>
+      <a href="/books/" class="nav-link">Search</a>
+      <a href="/logout" class="nav-link">LOG OUT</a>
+      <% } else { %>
+      <a href="/auth/google" class="login nav-link"
+        >LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"
+      /></a>
+      <% } %>
+    </nav>
+    <h1 class="book-title"><%= book.Name %></h1>
+    <p class="book-author">Author: <%= book.author %></p>
+    <p class="book-status">Is Checked Out: <%= book.isCheckedOut ? 'Yes' : 'No' %></p>
   
-        <a href="/books/new">Add Book</a>
-        <a href="/books/">Search</a>
-        <a href="/logout">LOG OUT</a>
-        <% } else { %>
-        <a href="/auth/google" class="login"
-          >LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"
-        /></a>
-        <% } %>
-      </nav>
-    <h1>Library Books</h1>
-    <% books.forEach(function(book) { %>
-        <div>
-            <h2><%= book.Name %></h2>
-            <p>Author: <%= book.author %></p>
-            <p>Is Checked Out: <%= book.isCheckedOut ? 'Yes' : 'No' %></p>
-        </div>
-    <% }); %>
-</body>
+        <form id="add-review-form" method="POST" action="/books/<%= book._id %>/reviews" class="review-form">
+            <label class="review-label">Review:</label>
+            <textarea name="content" class="review-textarea"></textarea>
+            <label class="rating-label">Rating:</label>
+            <select name="rating" class="rating-select">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5" selected>5</option>
+            </select>
+            <input type="submit" value="Add Review" class="submit-review">
+        </form>
+        
+
+    <% if (user) { %>
+
+    <h2 class="reviews-title">Reviews</h2>
+    <% book.reviews.forEach(function(review) { %>
+    <div class="review-item">
+      <h3 class="reviewer-name"><%= review.userName %></h3>
+      <p class="review-rating">Rating: <%= review.rating %></p>
+      <p class="review-text"><%= review.reviewText %></p>
+      <p class="review-date"><%= review.createdAt.toLocaleDateString() %></p>
+    </div>
+    <% }) %> <%}%>
+  </body>
 </html>

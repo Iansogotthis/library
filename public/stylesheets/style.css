@@ -23,6 +23,7 @@ nav a:hover {
   width: 20px;
   height: 20px;
 }
+
 .welcome-message {
   font-size: 1.5em;
   text-align: center;
@@ -100,6 +101,77 @@ table a {
 }
 
 table a:hover {
+  border: 2px solid black;
   color: #666;
   text-decoration: underline;
+  text-emphasis-style: double;
+  font-size: larger;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-link {
+  margin: 0 10px;
+}
+
+.book-title {
+  font-size: 2em;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.book-author, .book-status {
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.review-form {
+  margin: 20px auto;
+  width: 50%;
+}
+
+.review-label, .rating-label {
+  font-weight: bold;
+}
+
+.review-textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.rating-select {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.submit-review {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+.reviews-title {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.review-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px auto;
+  width: 50%;
+}
+
+.reviewer-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.review-rating, .review-text, .review-date {
+  margin-bottom: 5px;
 }

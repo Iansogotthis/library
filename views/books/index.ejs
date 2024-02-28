@@ -43,6 +43,16 @@
                             </form>
                         </td>
                     </tr>
+                    <% if (user && book.reviews.length > 0) { %>
+                        <tr>
+                            <td colspan="4">
+                                <h3>Reviews:</h3>
+                                <% book.reviews.forEach(function(review) { %>
+                                    <p><strong><%= review.reviewer %></strong> (<%= review.rating %> stars): <%= review.reviewText %></p>
+                                <% }); %>
+                            </td>
+                        </tr>
+                    <% } %>
                 <% }); %>
             </tbody>
         </table>
