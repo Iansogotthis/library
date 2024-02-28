@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <% if (user) { %>
+        <a href="/books">Library</a>
+        <a href="/books/new">Add Book</a>
+        <a href="/books/">Search</a>
+        <a href="/logout">LOG OUT</a>
+        <% } else { %>
+        <a href="/auth/google" class="login"
+          >LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"
+        /></a>
+        <% } %>
+      </nav>
+    <h1>Library Books</h1>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Author</th>
+                    <th>Is Checked Out</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% bookDocs.forEach(function(book) { %>
+                    <tr>
+                        <td><%= book.Name %></td>
+                        <td><%= book.author %></td>
+                        <td><%= book.isCheckedOut ? 'Yes' : 'No' %></td>
+                        <td>
+                            <form action="/books/<%= book._id %>/update" method="POST">
+                                <input type="hidden" name="isCheckedOut" value="<%= !book.isCheckedOut %>">
+                                <input type="submit" value="<%= book.isCheckedOut ? 'Check In' : 'Check Out' %>">
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

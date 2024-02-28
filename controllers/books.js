@@ -3,20 +3,53 @@ const Book = require('../models/book');
 module.exports={
     new: newBook,
     create,
-    searchBooks
+    searchBooks,
+    index,
+	
     
 }
+
+// function update  (req, res) {
+//     const bookId = req.params.id;
+//     const isCheckedOut = req.body.isCheckedOut === 'true';
+
+//     Book.findById(bookId, (err, book) => {
+//         if (err) {
+//             console.log(err);
+//             res.redirect('/books');
+//         } else {
+//             book.isCheckedOut = isCheckedOut;
+//             book.save((err, updatedBook) => {
+//                 if (err) {
+//                     console.log(err);
+//                 } else {
+//                     res.redirect('/books');
+//                 }
+//             });
+//         }
+//     });
+// };
+
+async function index(req, res){
+	
+	try {
+		const booksFromTheDB = await Book.find({})
+		console.log(booksFromTheDB)
+		// then we want to send a ejs page with all the movies to the browser
+		// movies/index is looking in the views folder for the ejs page
+		res.render('books/index', {bookDocs: booksFromTheDB})
+		// movieDocs is now a variables inside of views/movies/index.ejs 
+	} catch(err){
+		console.log(err)
+		res.redirect('/')
+	}
+}
+
 function searchBooks(req, res) {
     const name = req.query.name;
 
-    Book.find({ Name: name }, (err, books) => {
-        if (err) {
-            console.error('Error searching for book:', err);
-            res.status(500).send('Error searching for book');
-        } else {
-            res.render('searchResults', { books: books });
-        }
-    });
+    Book.find({ Name: name });
+	res.redirect('/books');
 }
 
 async function create(req, res) {
@@ -38,7 +71,7 @@ async function create(req, res) {
   
 	  // Always redirect after CUDing data
 	  // We'll refactor to redirect to the movies index after we implement it
-	  res.redirect(`/books/${bookFromTheDatabase._id}`); // Update this line
+	  res.redirect(`/books`); // Update this line
 	} catch (err) {
 	  // Typically some sort of validation error
 	  console.log(err);
