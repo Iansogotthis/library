@@ -6,11 +6,12 @@ module.exports = {
 
 async function deleteOne(req, res) {
 	// Note the cool "dot" syntax to query on the property of a subdoc
-	const book = await Book.findOne({'reviews._id': req.params.id, 'reviews.user': req.user._id});
+	console.log(req.params, "this is req.params.id")
+	const book = await Book.findOne({'reviews._id': req.params.reviewId, 'reviews.user': req.user._id});
 	console.log(book, "this is book")
 	
 	if (!book) return res.redirect(`/books/${book._id}`);
-	book.reviews.remove(req.params.id);
+	book.reviews.remove(req.params.reviewId);
 	// Save the updated book
 	await book.save();
 	// Redirect back to the book's show view
