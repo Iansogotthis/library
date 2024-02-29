@@ -1,20 +1,30 @@
 const Book = require("../models/book");
 module.exports = {
     create,
-	delete : deleteOne
+	delete : deleteOne,
+	edit
 }
 
+async function edit(req, res) {
+	console.log(req.params, "this is req.params.id")
+	
+	const book = await Book.findOne({'reviews._id': req.params.id});
+	
+	const review = book.reviews.id(req.params.id);
+	
+	res.render('review-edit/edit', { review });
+  }
+
 async function deleteOne(req, res) {
-	// Note the cool "dot" syntax to query on the property of a subdoc
 	console.log(req.params, "this is req.params.id")
 	const book = await Book.findOne({'reviews._id': req.params.reviewId, 'reviews.user': req.user._id});
-	console.log(book, "this is book")
 	
 	if (!book) return res.redirect(`/books/${book._id}`);
 	book.reviews.remove(req.params.reviewId);
-	// Save the updated book
+	
 	await book.save();
-	// Redirect back to the book's show view
+
+
 	res.redirect(`/books/${book._id}`);
   }
 
