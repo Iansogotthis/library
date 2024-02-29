@@ -201,5 +201,6 @@ form[action*="/reviews/"] input[type="submit"] {
 }
 
 form[action*="/reviews/"] input[type="submit"]:hover {
-  background-color: #cc0000;
+  background-color: #0a0909;
+  color:antiquewhite
 }
