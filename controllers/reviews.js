@@ -8,15 +8,14 @@ module.exports = {
 async function edit(req, res) {
 	console.log(req.params, "this is req.params.id")
 	
-	const book = await Book.findOne({'reviews._id': req.params.id});
-	
-	const review = book.reviews.id(req.params.id);
-	
-	res.render('review-edit/edit', { review });
+	const book = await Book.findOne({'reviews._id': req.params.reviewId});
+	console.log(book)
+	const review = book.reviews.id(req.params.reviewId);
+	console.log(review)
+	res.render('books/reviewEdit', { review });
   }
 
 async function deleteOne(req, res) {
-	console.log(req.params, "this is req.params.id")
 	const book = await Book.findOne({'reviews._id': req.params.reviewId, 'reviews.user': req.user._id});
 	
 	if (!book) return res.redirect(`/books/${book._id}`);

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    <title>Edit Review for <%= book.Name %></title>
+    <title>Edit Review</title>
   </head>
   <body>
     <nav class="main-nav">
@@ -19,11 +19,8 @@
       /></a>
       <% } %>
     </nav>
-    <h1 class="book-title">Edit Review for <%= book.Name %></h1>
-    <p class="book-author">Author: <%= book.author %></p>
-    <p class="book-status">Is Checked Out: <%= book.isCheckedOut ? 'Yes' : 'No' %></p>
-  
-    <form id="edit-review-form" method="POST" action="/books/<%= book._id %>/reviews/<%= review._id %>?_method=PUT" class="review-form">
+    
+    <form id="edit-review-form" method="POST" action="reviews/<%= review._id %>?_method=PUT" class="review-form">
         <label class="review-label">Review:</label>
         <textarea name="reviewText" class="review-textarea"><%= review.reviewText %></textarea>
         <label class="rating-label">Rating:</label>
