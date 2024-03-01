@@ -20,7 +20,7 @@
       <% } %>
     </nav>
     
-    <form id="edit-review-form" method="POST" action="reviews/<%= review._id %>?_method=PUT" class="review-form">
+    <form id="edit-review-form" method="POST" action="/reviews/<%= review._id %>?_method=PUT" method="POST" class="review-form">
         <label class="review-label">Review:</label>
         <textarea name="reviewText" class="review-textarea"><%= review.reviewText %></textarea>
         <label class="rating-label">Rating:</label>

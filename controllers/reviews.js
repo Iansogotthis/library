@@ -2,8 +2,23 @@ const Book = require("../models/book");
 module.exports = {
     create,
 	delete : deleteOne,
-	edit
+	edit,
+	update
 }
+async function update(req, res) {
+	const book = await Book.findOne({'reviews._id': req.params.reviewId});
+	console.log(book)
+	const review = book.reviews.id(req.params.reviewId);
+	console.log(req.body)
+	review.reviewText = req.body.reviewText;
+	try {
+	  await book.save();
+	} catch (e) {
+	  console.log(e.message);
+	}
+	// Redirect back to the book's show view
+	res.redirect(`/books/${book._id}`);
+  }
 
 async function edit(req, res) {
 	console.log(req.params, "this is req.params.id")
