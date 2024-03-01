@@ -36,3 +36,19 @@ The application is built using the following technologies:
 - EJS
 - Passport.js
 - Google OAuth
+
+## Installation
+
+To install and run the application, follow these steps:
+
+1. Clone the repository: `git clone https://github.com/<username>/library-system.git`
+
+2. Install dependencies: `npm install`
+
+3. Create a .env file and add your Google OAuth credentials: `CLIENT_ID=<your-client-id>` `CLIENT_SECRET=<your-client-secret>`
+
+4. Start the application: `npm start`
+
+## Getting Started
+
+### [App Link] <http://cyan-funny-walkingstick.cyclic.app/>
