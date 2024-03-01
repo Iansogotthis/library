@@ -11,6 +11,7 @@ async function update(req, res) {
 	const review = book.reviews.id(req.params.reviewId);
 	console.log(req.body)
 	review.reviewText = req.body.reviewText;
+	review.rating = req.body.rating;
 	try {
 	  await book.save();
 	} catch (e) {
